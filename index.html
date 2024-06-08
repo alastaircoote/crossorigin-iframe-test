@@ -6,15 +6,29 @@
     <script>
       if (window.top !== window) {
         document.documentElement.classList.add("iframe");
+
+        try {
+          window.top.documentElement;
+          document.documentElement.classList.add("same-origin");
+        } catch (ex) {
+          document.documentElement.classList.add("cross-origin");
+        }
       }
     </script>
   </head>
   <body>
     <div class="indicator">
-      <span class="main">Main frame</span>
-      <span class="iframe">iframe</span>
+      <span class="main">main frame</span>
+      <span class="iframe cross-iframe">cross-origin iframe</span>
+      <span class="iframe same-iframe">same-origin iframe</span>
     </div>
     <h1>0</h1>
+    <div id="iframe-target"></div>
+    <select>
+      <option value="same-origin">Same-origin iframe</option>
+      <option value="cross-origin">Cross-origin iframe</option>
+    </select>
+    <button id="freeze">Freeze</button>
     <script src="./script.js" type="module"></script>
   </body>
 </html>

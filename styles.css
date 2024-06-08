@@ -1,57 +1,107 @@
 body {
-    display: flex;
-    flex-direction: column;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-      Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-      sans-serif;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    width: 100vw;
-    height: 100%;
-    padding: 5vw;
-    margin: 0;
+  display: flex;
+  flex-direction: column;
+  /* font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif; */
+    font-family: monospace;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  padding: 5vw;
+  margin: 0;
+    gap: 5vw;
+  box-sizing: border-box;
+  color: blue;
+  /* max-width: 700px; */
+}
 
-    box-sizing: border-box;
-  }
+html.iframe body {
+    color: red;
+}
 
-  h1 {
-    font-size: 60vw;
-    line-height: 1em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+h1 {
+  font-size: 55px;
+  line-height: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-  body > h1,
-  body > iframe {
-    aspect-ratio: 1;
-    margin: 0;
-    padding: 0;
-    width: 90vw;
-    height: calc(50vh - 5vw);
-    text-align: center;
-  }
+body > h1,
+body > #iframe-target {
+  aspect-ratio: 1;
+  margin: 0;
+  padding: 0;
+  width: 90vw;
+  height: calc(50vh - 5vw);
+  text-align: center;
+  position: relative;
+  /* flex-shrink: 0;
+  flex-grow: 0; */
+}
 
-  iframe {
+iframe {
     border: solid 1px #000;
-  }
+position:absolute;
+width: 100%;
+height: 100%;
+left:0;
+top:0;
+}
 
-  .indicator {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: blue;
-    color: #fff;
-    font-size: 11px;
-    padding: 3px 10px;
-  }
+.indicator {
+  position: absolute;
+  top: 5vw;
+  left: 5vw;
+  background: blue;
+  color: #fff;
+  font-size: 11px;
+  padding: 3px 10px;
+}
 
-  html:not(.iframe) .indicator .iframe,
-  html.iframe .indicator .main {
+html.cross-origin .same-iframe, html.same-origin .cross-iframe {
     display: none;
-  }
+}
+/* 
+html.cross-origin .cross-iframe, html.same-origin .same-iframe {
+    display: block;
+} */
 
-  html.iframe .indicator {
-    background: red;
-  }
+html:not(.iframe) .indicator .iframe,
+html.iframe .indicator .main {
+  display: none;
+}
+
+
+html.iframe .indicator {
+  background: red;
+  top:0;
+  left:0;
+}
+
+html:not(.iframe) h1 {
+  border: solid 1px blue;
+}
+
+
+select {
+    display:block;
+    width: 100%;
+}
+
+html.iframe select, html.iframe #iframe-target {
+    display:none;
+}
+
+#freeze {
+    display:none;
+    position: absolute;
+    bottom: 5vw;
+    padding: 5px 20px;
+}
+
+html.iframe #freeze {
+    display: block;
+}
