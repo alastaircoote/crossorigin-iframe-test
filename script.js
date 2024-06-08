@@ -13,10 +13,7 @@ if (window.top === window) {
       if (targetURL.hostname === "localhost") {
         targetURL.hostname = "127.0.0.1";
       } else {
-        const hostSplit = targetURL.hostname.split(".");
-        hostSplit[0] = "second-origin";
-
-        targetURL.hostname = hostSplit.join(".");
+        targetURL.hostname = "cross-origin-iframe-test.alastair.is";
       }
     }
 
